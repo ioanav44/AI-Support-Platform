@@ -1,0 +1,40 @@
+# Web Framework
+fastapi==0.115.6
+uvicorn[standard]==0.34.0
+python-multipart==0.0.20
+
+# Database
+sqlalchemy[asyncio]==2.0.36
+asyncpg==0.30.0
+psycopg2-binary==2.9.10
+pgvector==0.3.6
+alembic==1.14.1
+
+# Validation & Settings
+pydantic==2.10.4
+pydantic-settings==2.7.1
+
+# ML & NLP
+numpy==1.26.4
+scipy==1.14.1
+scikit-learn==1.6.1
+hdbscan==0.8.40
+fastembed==0.4.2
+
+# Sentiment Analysis
+vaderSentiment==3.3.2
+
+# LLM Integration
+openai==1.58.1
+
+# Utilities
+python-dateutil==2.9.0
+faker==33.3.1
+
+# CORS
+starlette==0.41.3
+
+# Testing
+pytest==8.3.4
+pytest-asyncio==0.25.0
+httpx==0.28.1
