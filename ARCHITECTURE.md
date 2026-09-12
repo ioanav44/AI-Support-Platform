@@ -376,32 +376,23 @@ Health Checks:
 - API contracts: request/response schemas
 ```
 
-## Future Enhancements
+## Scope of this version
 
-1. **Real-time Updates (WebSocket/SSE)**
-   - Server-Sent Events for live incident stream
-   - Dashboard auto-refresh on anomaly detection
+This project intentionally focuses on the core support intelligence capabilities that are implemented and validated in this repository:
 
-2. **Advanced Analytics**
-   - Time-series analysis for trend prediction
-   - Anomaly forecasting (ARIMA, Prophet)
-   - Correlation matrix between ticket attributes
+- authentication and authorization
+- ticket management
+- semantic search using embeddings
+- ticket clustering and issue grouping
+- anomaly detection based on volume and sentiment
+- emerging incident detection
+- dashboard analytics
+- AI-assisted support query via RAG
+- scenario-based simulation and validation
 
-3. **Multi-tenant Support**
-   - Tenant isolation at database level
-   - Separate data schemas or row-level security
-
-4. **Audit & Compliance**
-   - Immutable audit log (temporal tables)
-   - GDPR/CCPA data handling
-   - Role-based encryption of sensitive fields
-
-5. **Mobile App**
-   - React Native for iOS/Android
-   - Offline support with sync
-   - Push notifications for critical alerts
+Additional capabilities such as real-time streaming, forecasting, multi-tenancy, compliance workflows, or mobile clients are intentionally out of scope for this version and can be considered later as separate roadmap work.
 
 ---
 
-**Last Updated:** 2024
-**Version:** 1.0.0 (Foundation + Milestones 1-8)
+**Last Updated:** 2026
+**Version:** 1.0.0 (implemented scope)
