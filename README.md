@@ -1,195 +1,56 @@
 # AI Support Platform
 
-AI Support Platform is an AI-powered support platform for monitoring, investigating, and resolving recurring customer issues. It combines support ticket analytics, semantic search, anomaly detection, clustering, and LLM-assisted insights in a single workflow.
+AI Support Platform is a smart operational intelligence platform designed for support teams that need to understand what is happening across customer issues, detect patterns early, and act before small problems turn into large incidents.
 
-## Architecture
+Instead of manually reading through dozens of tickets, the platform helps teams identify recurring problems, spot volume spikes, cluster similar incidents, and ask natural-language questions about ongoing support trends.
 
-```text
-┌───────────────────────┐
-│ React + TypeScript     │
-│ Dashboard + UI         │
-└──────────┬────────────┘
-           │
-           ▼
-┌───────────────────────┐
-│ Spring Boot API        │
-│ JWT auth + tickets +  │
-│ analytics + simulator  │
-└───────┬───────────────┘
-        │
-   ┌────┼────┐
-   │    │
-   ▼    ▼
-┌────────────┐  ┌────────────────────┐
-│ PostgreSQL │  │ Python ML Service  │
-│ + pgvector │  │ FastAPI + HDBSCAN  │
-└────────────┘  │ embeddings + stats │
-                └─────────┬──────────┘
-                          ▼
-                   LLM API (OpenAI)
-```
+## What the platform does
 
-## Features
+Support teams usually deal with a constant stream of tickets, complaints, and recurring bugs. The challenge is not only to respond to each case, but to recognize when multiple tickets point to the same root cause.
 
-- JWT authentication and role-based access
-- Ticket management and issue lifecycle tracking
-- Semantic search with pgvector embeddings
-- HDBSCAN-based clustering of related tickets
-- Z-score anomaly detection for spikes in support volume
-- Emerging issue detection and root-cause hints
-- RAG-style ask-the-data experience over support records
-- Dashboard analytics and simulation scenarios
+AI Support Platform helps with that by:
 
-## Tech Stack
+- collecting and organizing support tickets from different channels
+- grouping similar issues together using clustering and semantic similarity
+- detecting unusual volume spikes and negative sentiment patterns
+- highlighting emerging incidents before they become major outages
+- searching support history in a more natural, conversational way
+- giving teams a clearer view of the most important problems affecting customers
 
-### Backend
-- Java 21
-- Spring Boot 3
-- Spring Security
-- Spring Data JPA / Hibernate
-- PostgreSQL 16 + pgvector
-- Flyway
+## Why it matters
 
-### ML / AI
-- Python 3.11
-- FastAPI
-- scikit-learn / HDBSCAN
-- NumPy / SciPy
-- OpenAI integration
+Many support teams lose time because they react to tickets one by one without seeing the bigger picture. That leads to:
 
-### Frontend
-- React 18
-- TypeScript
-- Vite
+- repeated work on the same underlying issue
+- slower response times during high-volume incidents
+- weaker prioritization of the most urgent customer problems
+- limited visibility into trends across product and region
 
-### Infrastructure
-- Docker / Docker Compose
-- GitHub Actions
-- Testcontainers
+This platform turns support data into actionable insight so teams can move from reactive work to proactive problem management.
 
-## Prerequisites
+## Core product experience
 
-- Docker and Docker Compose
-- Or: Java 21, Python 3.11, Node.js 18+, PostgreSQL 16
+### 1. See the bigger picture
+The dashboard gives a live summary of ticket trends, issue severity, and operational patterns.
 
-## Quick Start
+### 2. Detect emerging problems
+The platform identifies unusual spikes in support volume and unusual changes in sentiment, helping teams flag incidents earlier.
 
-### Option 1: Docker Compose
+### 3. Group similar tickets
+Related tickets are clustered so the team can understand whether multiple customers are reporting the same issue.
 
-```bash
-git clone <your-repo-url>
-cd "AI Support Platform"
-cp server-java/.env.example server-java/.env
-docker compose up --build
-```
+### 4. Search naturally
+Users can ask questions like: “What problems are affecting payments this week?” or “Which incidents are increasing in Europe?” and get answers grounded in support data.
 
-Available services:
-- Backend: http://localhost:8080
-- Swagger UI: http://localhost:8080/swagger-ui.html
-- ML service: http://localhost:8000
-- Frontend: http://localhost:5173
-- PostgreSQL: localhost:5432
+### 5. Prioritize better
+By understanding which issues are recurring and growing, teams can focus resources on the incidents that matter most.
 
-### Option 2: Local development
+## Example use cases
 
-Backend:
-```bash
-cd server-java
-mvn clean install
-mvn spring-boot:run
-```
+- monitoring a product release for unexpected customer issues
+- identifying whether several tickets are symptoms of the same outage
+- highlighting the most frequent bug patterns by region or product area
+- preparing faster incident summaries for engineering and support leadership
+- reducing manual investigation work during high-pressure periods
 
-ML service:
-```bash
-cd ml-service
-pip install -r requirements.txt
-python -m uvicorn app.main:app --reload --port 8000
-```
 
-Frontend:
-```bash
-cd client
-npm install
-npm run dev
-```
-
-## Main API Endpoints
-
-### Authentication
-- `POST /api/v1/auth/register`
-- `POST /api/v1/auth/login`
-- `POST /api/v1/auth/refresh`
-
-### Tickets
-- `GET /api/v1/tickets`
-- `POST /api/v1/tickets`
-- `GET /api/v1/tickets/{id}`
-- `PUT /api/v1/tickets/{id}`
-- `DELETE /api/v1/tickets/{id}`
-
-### Search and analytics
-- `POST /api/v1/search/semantic`
-- `GET /api/v1/analytics/summary`
-- `GET /api/v1/analytics/clustering`
-- `GET /api/v1/analytics/anomalies`
-
-### RAG and simulator
-- `POST /api/v1/rag/query`
-- `POST /api/v1/simulator/scenarios/visa-outage`
-- `POST /api/v1/simulator/scenarios/login-bug`
-- `POST /api/v1/simulator/scenarios/mobile-crash`
-
-## Configuration
-
-Set the required environment variables in `server-java/.env` or via your shell.
-
-Key variables:
-- `DB_HOST`
-- `DB_PORT`
-- `DB_NAME`
-- `DB_USER`
-- `DB_PASSWORD`
-- `JWT_SECRET`
-- `ML_SERVICE_URL`
-- `CORS_ALLOWED_ORIGINS`
-- `LLM_API_KEY`
-
-## Testing
-
-```bash
-cd server-java
-mvn test
-```
-
-```bash
-cd ml-service
-pytest tests/ -v
-```
-
-## Roadmap
-
-- [x] Foundation and API layer
-- [x] JWT auth and security
-- [x] ML service and embeddings
-- [x] Clustering pipeline
-- [x] Anomaly detection
-- [x] Emerging issue detection
-- [x] LLM-assisted support insights
-- [ ] Real-time dashboard refinements
-- [ ] CI/CD and production polish
-
-## License
-
-MIT
-
-## 🤝 Contributing
-
-Contributions welcome! Please open issues and PRs.
-
-## 📞 Contact
-
-For questions or feedback, reach out via GitHub Issues.
-
----
-
-**Status:** In active development (Milestones 1-8 complete, 9-10 pending)
